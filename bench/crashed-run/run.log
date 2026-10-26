@@ -1,0 +1,170 @@
+Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStoreType=JKS -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=37367 -Dhttp.nonProxyHosts=localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local -Djdk.http.auth.tunneling.disabledSchemes= -Djdk.http.auth.proxying.disabledSchemes=
+Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStoreType=JKS -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=37367 -Dhttp.nonProxyHosts=localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local -Djdk.http.auth.tunneling.disabledSchemes= -Djdk.http.auth.proxying.disabledSchemes=
+Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStoreType=JKS -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=37367 -Dhttp.nonProxyHosts=localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local -Djdk.http.auth.tunneling.disabledSchemes= -Djdk.http.auth.proxying.disabledSchemes=
+Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStoreType=JKS -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=37367 -Dhttp.nonProxyHosts=localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local -Djdk.http.auth.tunneling.disabledSchemes= -Djdk.http.auth.proxying.disabledSchemes=
+Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStoreType=JKS -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=37367 -Dhttp.nonProxyHosts=localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local -Djdk.http.auth.tunneling.disabledSchemes= -Djdk.http.auth.proxying.disabledSchemes=
+CPU model        : Intel(R) Xeon(R) Processor @ 2.30GHz
+Logical CPUs     : 4 (Runtime.availableProcessors)
+lscpu topology   : Thread(s) per core: 1;Core(s) per socket: 4;Socket(s): 1;Hypervisor vendor: KVM;Virtualization type: full
+RAM              : 16477348 kB
+GPU (nvidia-smi) : not available (nvidia-smi not found)
+OpenCL devices   : Device Name cpu-skylake-avx512-Intel(R) Xeon(R) Processor @ 2.30GHz; Driver Version 5.0+debian; Device Type CPU; Device Name cpu-skylake-avx512-Intel(R) Xeon(R) Processor @ 2.30GHz; Device Name cpu-skylake-avx512-Intel(R) Xeon(R) Processor @ 2.30GHz; Device Name cpu-skylake-avx512-Intel(R) Xeon(R) Processor @ 2.30GHz
+OS               : Ubuntu 24.04.5 LTS / kernel 6.18.44-fc-v153
+Java             : 21.0.12.1 (OpenJDK 64-Bit Server VM, Ubuntu)
+FFmpeg           : ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+MPI              : mpirun (Open MPI) 4.1.6 ; Java bindings built from Open MPI source of the same version
+JVM max heap     : 10240 MiB
+=== input random-1MiB ===
+09:56:24.448 [main] INFO com.sathwikhbhat.bitplane.parallel.gpu.OpenClRasterizer -- No OpenCL GPU device found
+  stages: sequential 1
+    frame_construction       sequential 1          median 0.0018 s
+    png_write                sequential 1          median 0.0365 s
+    png_read                 sequential 1          median 0.0054 s
+    frame_parse_reassemble   sequential 1          median 0.0042 s
+  stages: threads 1
+    frame_construction       threads  1          median 0.0022 s
+    png_write                threads  1          median 0.0384 s
+    png_read                 threads  1          median 0.0059 s
+    frame_parse_reassemble   threads  1          median 0.0047 s
+  stages: threads 2
+    frame_construction       threads  2          median 0.0021 s
+    png_write                threads  2          median 0.0289 s
+    png_read                 threads  2          median 0.0037 s
+    frame_parse_reassemble   threads  2          median 0.0049 s
+  stages: threads 4
+    frame_construction       threads  4          median 0.0021 s
+    png_write                threads  4          median 0.0287 s
+    png_read                 threads  4          median 0.0038 s
+    frame_parse_reassemble   threads  4          median 0.0047 s
+  stages: opencl-cpu-NOT-A-GPU pocl
+    frame_construction       opencl-cpu-NOT-A-GPU pocl       median 0.0013 s
+    png_write                opencl-cpu-NOT-A-GPU pocl       median 0.0286 s
+    png_read                 opencl-cpu-NOT-A-GPU pocl       median 0.0034 s
+    frame_parse_reassemble   opencl-cpu-NOT-A-GPU pocl       median 0.0046 s
+    encode                   ffmpeg   -          median 0.1834 s
+    decode                   ffmpeg   -          median 0.2959 s
+  e2e: sequential 1
+09:56:33.089 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=sequential, running=sequential
+    encode                   sequential 1          median 0.3543 s
+    decode                   sequential 1          median 0.3193 s
+  e2e: threads 1
+09:56:39.139 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=threads, running=threads (1 threads)
+    encode                   threads  1          median 0.1934 s
+    decode                   threads  1          median 0.3449 s
+  e2e: threads 2
+09:56:45.006 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=threads, running=threads (2 threads)
+    encode                   threads  2          median 0.4187 s
+    decode                   threads  2          median 0.3161 s
+  e2e: threads 4
+09:56:51.246 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=threads, running=threads (4 threads)
+    encode                   threads  4          median 0.2160 s
+    decode                   threads  4          median 0.3340 s
+  e2e: opencl-cpu-NOT-A-GPU pocl
+09:56:56.993 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=gpu, running=gpu (cpu-skylake-avx512-Intel(R) Xeon(R) Processor @ 2.30GHz (type=non-GPU, vendor=GenuineIntel, driver=5.0+debian))
+    encode                   opencl-cpu-NOT-A-GPU pocl       median 0.1942 s
+    decode                   opencl-cpu-NOT-A-GPU pocl       median 0.3252 s
+  e2e: mpi np=1
+    encode_wall_incl_jvm_start mpi      np=1       median 1.3301 s
+  e2e: mpi np=4
+    encode_wall_incl_jvm_start mpi      np=4       median 1.3107 s
+=== input random-5MiB ===
+09:57:24.421 [main] INFO com.sathwikhbhat.bitplane.parallel.gpu.OpenClRasterizer -- No OpenCL GPU device found
+  stages: sequential 1
+    frame_construction       sequential 1          median 0.0074 s
+    png_write                sequential 1          median 0.1304 s
+    png_read                 sequential 1          median 0.0104 s
+    frame_parse_reassemble   sequential 1          median 0.0112 s
+  stages: threads 1
+    frame_construction       threads  1          median 0.0081 s
+    png_write                threads  1          median 0.1334 s
+    png_read                 threads  1          median 0.0166 s
+    frame_parse_reassemble   threads  1          median 0.0099 s
+  stages: threads 2
+    frame_construction       threads  2          median 0.0051 s
+    png_write                threads  2          median 0.0774 s
+    png_read                 threads  2          median 0.0067 s
+    frame_parse_reassemble   threads  2          median 0.0080 s
+  stages: threads 4
+    frame_construction       threads  4          median 0.0036 s
+    png_write                threads  4          median 0.0517 s
+    png_read                 threads  4          median 0.0044 s
+    frame_parse_reassemble   threads  4          median 0.0075 s
+  stages: opencl-cpu-NOT-A-GPU pocl
+    frame_construction       opencl-cpu-NOT-A-GPU pocl       median 0.0029 s
+    png_write                opencl-cpu-NOT-A-GPU pocl       median 0.0508 s
+    png_read                 opencl-cpu-NOT-A-GPU pocl       median 0.0046 s
+    frame_parse_reassemble   opencl-cpu-NOT-A-GPU pocl       median 0.0076 s
+    encode                   ffmpeg   -          median 0.5519 s
+    decode                   ffmpeg   -          median 0.5066 s
+  e2e: sequential 1
+09:57:41.480 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=sequential, running=sequential
+    encode                   sequential 1          median 0.5167 s
+    decode                   sequential 1          median 0.6890 s
+  e2e: threads 1
+09:57:54.086 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=threads, running=threads (1 threads)
+    encode                   threads  1          median 0.4744 s
+    decode                   threads  1          median 0.6559 s
+  e2e: threads 2
+09:58:06.278 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=threads, running=threads (2 threads)
+    encode                   threads  2          median 0.4592 s
+    decode                   threads  2          median 0.5970 s
+  e2e: threads 4
+09:58:17.900 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=threads, running=threads (4 threads)
+    encode                   threads  4          median 0.4172 s
+    decode                   threads  4          median 0.6198 s
+  e2e: opencl-cpu-NOT-A-GPU pocl
+09:58:28.595 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=gpu, running=gpu (cpu-skylake-avx512-Intel(R) Xeon(R) Processor @ 2.30GHz (type=non-GPU, vendor=GenuineIntel, driver=5.0+debian))
+    encode                   opencl-cpu-NOT-A-GPU pocl       median 0.5190 s
+    decode                   opencl-cpu-NOT-A-GPU pocl       median 0.5950 s
+  e2e: mpi np=1
+    encode_wall_incl_jvm_start mpi      np=1       median 2.5528 s
+  e2e: mpi np=4
+    encode_wall_incl_jvm_start mpi      np=4       median 1.6539 s
+=== input random-25MiB ===
+09:59:13.362 [main] INFO com.sathwikhbhat.bitplane.parallel.gpu.OpenClRasterizer -- No OpenCL GPU device found
+  stages: sequential 1
+    frame_construction       sequential 1          median 0.0361 s
+    png_write                sequential 1          median 0.6171 s
+    png_read                 sequential 1          median 0.0553 s
+    frame_parse_reassemble   sequential 1          median 0.0550 s
+  stages: threads 1
+    frame_construction       threads  1          median 0.0377 s
+    png_write                threads  1          median 0.6317 s
+    png_read                 threads  1          median 0.0453 s
+    frame_parse_reassemble   threads  1          median 0.0375 s
+  stages: threads 2
+    frame_construction       threads  2          median 0.0202 s
+    png_write                threads  2          median 0.3159 s
+    png_read                 threads  2          median 0.0233 s
+    frame_parse_reassemble   threads  2          median 0.0311 s
+  stages: threads 4
+    frame_construction       threads  4          median 0.0146 s
+    png_write                threads  4          median 0.1763 s
+    png_read                 threads  4          median 0.0132 s
+    frame_parse_reassemble   threads  4          median 0.0269 s
+  stages: opencl-cpu-NOT-A-GPU pocl
+    frame_construction       opencl-cpu-NOT-A-GPU pocl       median 0.0128 s
+    png_write                opencl-cpu-NOT-A-GPU pocl       median 0.1749 s
+    png_read                 opencl-cpu-NOT-A-GPU pocl       median 0.0147 s
+    frame_parse_reassemble   opencl-cpu-NOT-A-GPU pocl       median 0.0299 s
+    encode                   ffmpeg   -          median 1.2318 s
+    decode                   ffmpeg   -          median 1.5634 s
+  e2e: sequential 1
+10:00:06.741 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=sequential, running=sequential
+    encode                   sequential 1          median 1.7834 s
+    decode                   sequential 1          median 2.1819 s
+  e2e: threads 1
+10:00:45.761 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=threads, running=threads (1 threads)
+    encode                   threads  1          median 1.7969 s
+    decode                   threads  1          median 2.1362 s
+  e2e: threads 2
+10:01:25.058 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=threads, running=threads (2 threads)
+    encode                   threads  2          median 1.6417 s
+    decode                   threads  2          median 1.9129 s
+  e2e: threads 4
+10:02:00.985 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=threads, running=threads (4 threads)
+    encode                   threads  4          median 1.3899 s
+    decode                   threads  4          median 1.7873 s
+  e2e: opencl-cpu-NOT-A-GPU pocl
+10:02:35.055 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=gpu, running=gpu (cpu-skylake-avx512-Intel(R) Xeon(R) Processor @ 2.30GHz (type=non-GPU, vendor=GenuineIntel, driver=5.0+debian))
+    encode                   opencl-cpu-NOT-A-GPU pocl       median 1.4557 s

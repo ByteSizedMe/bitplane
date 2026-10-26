@@ -1,0 +1,206 @@
+BITPLANE BENCHMARK - RAW RESULTS
+Every value below is a System.nanoTime measurement from this run, or a recorded 'skipped' reason.
+Protocol: 3 warm-up runs (discarded) then 3 timed runs; median reported. Correctness is verified after EVERY run (warm-up and timed,
+verification itself is not timed): frames pixel-identical to the sequential encoder's frames, and
+decoded file SHA-256 equals the input's. A mismatch aborts the benchmark.
+
+== HARDWARE / SOFTWARE ==
+CPU model        : Intel(R) Xeon(R) Processor @ 2.30GHz
+Logical CPUs     : 4 (Runtime.availableProcessors)
+lscpu topology   : Thread(s) per core: 1;Core(s) per socket: 4;Socket(s): 1;Hypervisor vendor: KVM;Virtualization type: full
+RAM              : 16477348 kB
+GPU (nvidia-smi) : not available (nvidia-smi not found)
+OpenCL devices   : Device Name cpu-skylake-avx512-Intel(R) Xeon(R) Processor @ 2.30GHz; Driver Version 5.0+debian; Device Type CPU; Device Name cpu-skylake-avx512-Intel(R) Xeon(R) Processor @ 2.30GHz; Device Name cpu-skylake-avx512-Intel(R) Xeon(R) Processor @ 2.30GHz; Device Name cpu-skylake-avx512-Intel(R) Xeon(R) Processor @ 2.30GHz
+OS               : Ubuntu 24.04.5 LTS / kernel 6.18.44-fc-v153
+Java             : 21.0.12.1 (OpenJDK 64-Bit Server VM, Ubuntu)
+FFmpeg           : ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+MPI              : mpirun (Open MPI) 4.1.6 ; Java bindings built from Open MPI source of the same version
+JVM max heap     : 10240 MiB
+
+== INPUTS ==
+random-1MiB: 1048576 bytes, random bytes, java.util.Random seed 20260101, sha256=b1d8c167661f06e61e50e20e320dd223be126053be6ce012ea1ce4af69ae7417, payload frames=1 (+1 metadata), gzip ratio=1.000
+random-5MiB: 5242880 bytes, random bytes, java.util.Random seed 20260101, sha256=8edb4c1b94f42c685e13959a0ba437f5d2aeda93bc053b18b703482fe20decb6, payload frames=3 (+1 metadata), gzip ratio=1.000
+random-25MiB: 26214400 bytes, random bytes, java.util.Random seed 20260101, sha256=4fad0701163dfca4828e886097364365bc954c7b2ab3636e4e2cc647acae082c, payload frames=13 (+1 metadata), gzip ratio=1.000
+compressible-25MiB: 26214400 bytes, repeated-word text, sha256=5d41d93ff47844208f968f12c8336b73fde13643b906d683e42891039542cbde, payload frames=13 (+1 metadata), gzip ratio=0.368
+
+== NOTES ==
+* Mode 'opencl-cpu-NOT-A-GPU' runs the OpenCL kernel on a CPU runtime (pocl). It is NOT a GPU result.
+* e2e rows for sequential/threads/gpu run inside one warmed JVM; the MPI wall-clock row launches
+  fresh JVMs and MPI_Init each run (the in-process row excludes JVM start). Not like-for-like.
+* frame_parse_reassemble includes writing the reassembled file to disk (as DecodePipeline does).
+* ffmpeg rows use the same command for every mode; they run on all cores.
+
+== RESULTS (median seconds; min/max in CSV) ==
+input                category   mode                       config                             metric                             median_s  min..max / note
+random-1MiB          stage      gpu                        -                                  frame_construction                 SKIPPED   no OpenCL GPU device on this machine (no nvidia-smi / only CPU OpenCL runtime)
+random-1MiB          e2e        gpu                        -                                  encode                             SKIPPED   no OpenCL GPU device on this machine; gpu mode would fall back to threads
+random-1MiB          stage      sequential                 1                                  frame_construction                 0.0017    0.0017..0.0023
+random-1MiB          stage      sequential                 1                                  png_write                          0.0363    0.0358..0.0381  [metadata + payload frames]
+random-1MiB          stage      sequential                 1                                  png_read                           0.0055    0.0054..0.0059  [metadata + payload frames]
+random-1MiB          stage      sequential                 1                                  frame_parse_reassemble             0.0061    0.0041..0.0062  [includes writing the reassembled file]
+random-1MiB          stage      threads                    1                                  frame_construction                 0.0022    0.0021..0.0023
+random-1MiB          stage      threads                    1                                  png_write                          0.0370    0.0366..0.0373  [metadata + payload frames]
+random-1MiB          stage      threads                    1                                  png_read                           0.0055    0.0054..0.0056  [metadata + payload frames]
+random-1MiB          stage      threads                    1                                  frame_parse_reassemble             0.0040    0.0040..0.0041  [includes writing the reassembled file]
+random-1MiB          stage      threads                    2                                  frame_construction                 0.0022    0.0022..0.0025
+random-1MiB          stage      threads                    2                                  png_write                          0.0316    0.0294..0.0368  [metadata + payload frames]
+random-1MiB          stage      threads                    2                                  png_read                           0.0040    0.0040..0.0071  [metadata + payload frames]
+random-1MiB          stage      threads                    2                                  frame_parse_reassemble             0.0057    0.0053..0.0057  [includes writing the reassembled file]
+random-1MiB          stage      threads                    4                                  frame_construction                 0.0023    0.0021..0.0025
+random-1MiB          stage      threads                    4                                  png_write                          0.0288    0.0288..0.0292  [metadata + payload frames]
+random-1MiB          stage      threads                    4                                  png_read                           0.0041    0.0037..0.0043  [metadata + payload frames]
+random-1MiB          stage      threads                    4                                  frame_parse_reassemble             0.0045    0.0044..0.0046  [includes writing the reassembled file]
+random-1MiB          ffmpeg     ffmpeg                     -                                  encode                             0.1973    0.1887..0.4676  [libx264rgb crf 0 preset veryslow, frames already on disk]
+random-1MiB          ffmpeg     ffmpeg                     -                                  decode                             0.3001    0.2872..0.3113  [frame extraction to PNG only]
+random-1MiB          e2e        sequential                 1                                  encode                             0.2258    0.2223..0.3425  [file -> frames -> PNG -> ffmpeg -> mp4]
+random-1MiB          e2e        sequential                 1                                  decode                             0.3261    0.3250..0.3290  [mp4 -> ffmpeg -> PNG read -> parse -> file]
+random-1MiB          e2e        threads                    1                                  encode                             0.1937    0.1934..0.4552  [file -> frames -> PNG -> ffmpeg -> mp4]
+random-1MiB          e2e        threads                    1                                  decode                             0.3528    0.3400..0.3908  [mp4 -> ffmpeg -> PNG read -> parse -> file]
+random-1MiB          e2e        threads                    2                                  encode                             0.2832    0.1987..0.3959  [file -> frames -> PNG -> ffmpeg -> mp4]
+random-1MiB          e2e        threads                    2                                  decode                             0.3212    0.3114..0.3281  [mp4 -> ffmpeg -> PNG read -> parse -> file]
+random-1MiB          e2e        threads                    4                                  encode                             0.2644    0.1877..0.3432  [file -> frames -> PNG -> ffmpeg -> mp4]
+random-1MiB          e2e        threads                    4                                  decode                             0.3364    0.3206..0.3605  [mp4 -> ffmpeg -> PNG read -> parse -> file]
+random-1MiB          e2e        mpi                        np=1                               encode_wall_incl_jvm_start         1.3684    1.3454..1.4075  [mpirun -np 1 java ... MpiEncodeMain (fresh JVMs + MPI_Init each run)]
+random-1MiB          e2e        mpi                        np=1                               encode_in_process_excl_jvm_start   0.8556    0.8477..0.8870  [MPI_TIMING total_in_process_s reported by rank 0]
+random-1MiB          e2e-phase  mpi                        np=1                               mpi_read_s                         0.0082    0.0080..0.0110  [rank 0 / max over ranks, from MPI_TIMING]
+random-1MiB          e2e-phase  mpi                        np=1                               mpi_scatter_s                      0.0012    0.0011..0.0013  [rank 0 / max over ranks, from MPI_TIMING]
+random-1MiB          e2e-phase  mpi                        np=1                               mpi_build_max_over_ranks_s         0.0679    0.0603..0.0773  [rank 0 / max over ranks, from MPI_TIMING]
+random-1MiB          e2e-phase  mpi                        np=1                               mpi_png_write_max_over_ranks_s     0.4971    0.4908..0.5199  [rank 0 / max over ranks, from MPI_TIMING]
+random-1MiB          e2e-phase  mpi                        np=1                               mpi_ffmpeg_s                       0.2773    0.2730..0.2952  [rank 0 / max over ranks, from MPI_TIMING]
+random-1MiB          e2e        mpi                        np=4                               encode_wall_incl_jvm_start         1.4467    1.3245..1.4896  [mpirun -np 4 java ... MpiEncodeMain (fresh JVMs + MPI_Init each run)]
+random-1MiB          e2e        mpi                        np=4                               encode_in_process_excl_jvm_start   0.8574    0.7386..0.8992  [MPI_TIMING total_in_process_s reported by rank 0]
+random-1MiB          e2e-phase  mpi                        np=4                               mpi_read_s                         0.0115    0.0108..0.0137  [rank 0 / max over ranks, from MPI_TIMING]
+random-1MiB          e2e-phase  mpi                        np=4                               mpi_scatter_s                      0.0009    0.0008..0.0009  [rank 0 / max over ranks, from MPI_TIMING]
+random-1MiB          e2e-phase  mpi                        np=4                               mpi_build_max_over_ranks_s         0.0851    0.0749..0.0964  [rank 0 / max over ranks, from MPI_TIMING]
+random-1MiB          e2e-phase  mpi                        np=4                               mpi_png_write_max_over_ranks_s     0.4552    0.4205..0.4947  [rank 0 / max over ranks, from MPI_TIMING]
+random-1MiB          e2e-phase  mpi                        np=4                               mpi_ffmpeg_s                       0.3464    0.3032..0.4274  [rank 0 / max over ranks, from MPI_TIMING]
+random-1MiB          e2e        mpi                        -                                  decode                             SKIPPED   decode is not distributed over MPI (spec defines MPI for encode); mpi decode = threads decode
+random-5MiB          stage      gpu                        -                                  frame_construction                 SKIPPED   no OpenCL GPU device on this machine (no nvidia-smi / only CPU OpenCL runtime)
+random-5MiB          e2e        gpu                        -                                  encode                             SKIPPED   no OpenCL GPU device on this machine; gpu mode would fall back to threads
+random-5MiB          stage      sequential                 1                                  frame_construction                 0.0076    0.0075..0.0077
+random-5MiB          stage      sequential                 1                                  png_write                          0.1240    0.1237..0.1244  [metadata + payload frames]
+random-5MiB          stage      sequential                 1                                  png_read                           0.0111    0.0111..0.0111  [metadata + payload frames]
+random-5MiB          stage      sequential                 1                                  frame_parse_reassemble             0.0117    0.0111..0.0150  [includes writing the reassembled file]
+random-5MiB          stage      threads                    1                                  frame_construction                 0.0086    0.0078..0.0103
+random-5MiB          stage      threads                    1                                  png_write                          0.1297    0.1269..0.1306  [metadata + payload frames]
+random-5MiB          stage      threads                    1                                  png_read                           0.0115    0.0115..0.0120  [metadata + payload frames]
+random-5MiB          stage      threads                    1                                  frame_parse_reassemble             0.0099    0.0095..0.0101  [includes writing the reassembled file]
+random-5MiB          stage      threads                    2                                  frame_construction                 0.0050    0.0048..0.0052
+random-5MiB          stage      threads                    2                                  png_write                          0.0766    0.0747..0.0767  [metadata + payload frames]
+random-5MiB          stage      threads                    2                                  png_read                           0.0072    0.0070..0.0073  [metadata + payload frames]
+random-5MiB          stage      threads                    2                                  frame_parse_reassemble             0.0087    0.0086..0.0087  [includes writing the reassembled file]
+random-5MiB          stage      threads                    4                                  frame_construction                 0.0038    0.0038..0.0045
+random-5MiB          stage      threads                    4                                  png_write                          0.0493    0.0470..0.0493  [metadata + payload frames]
+random-5MiB          stage      threads                    4                                  png_read                           0.0045    0.0045..0.0054  [metadata + payload frames]
+random-5MiB          stage      threads                    4                                  frame_parse_reassemble             0.0081    0.0077..0.0088  [includes writing the reassembled file]
+random-5MiB          ffmpeg     ffmpeg                     -                                  encode                             0.3539    0.3333..0.5375  [libx264rgb crf 0 preset veryslow, frames already on disk]
+random-5MiB          ffmpeg     ffmpeg                     -                                  decode                             0.5115    0.5017..0.5158  [frame extraction to PNG only]
+random-5MiB          e2e        sequential                 1                                  encode                             0.7400    0.5353..0.8182  [file -> frames -> PNG -> ffmpeg -> mp4]
+random-5MiB          e2e        sequential                 1                                  decode                             0.6714    0.6564..0.6755  [mp4 -> ffmpeg -> PNG read -> parse -> file]
+random-5MiB          e2e        threads                    1                                  encode                             0.7008    0.6030..0.7416  [file -> frames -> PNG -> ffmpeg -> mp4]
+random-5MiB          e2e        threads                    1                                  decode                             0.6866    0.6544..0.6875  [mp4 -> ffmpeg -> PNG read -> parse -> file]
+random-5MiB          e2e        threads                    2                                  encode                             0.4545    0.4160..0.4549  [file -> frames -> PNG -> ffmpeg -> mp4]
+random-5MiB          e2e        threads                    2                                  decode                             0.6103    0.6026..0.6120  [mp4 -> ffmpeg -> PNG read -> parse -> file]
+random-5MiB          e2e        threads                    4                                  encode                             0.4249    0.4087..0.5591  [file -> frames -> PNG -> ffmpeg -> mp4]
+random-5MiB          e2e        threads                    4                                  decode                             0.5810    0.5644..0.5931  [mp4 -> ffmpeg -> PNG read -> parse -> file]
+random-5MiB          e2e        mpi                        np=1                               encode_wall_incl_jvm_start         2.5734    2.0986..2.6525  [mpirun -np 1 java ... MpiEncodeMain (fresh JVMs + MPI_Init each run)]
+random-5MiB          e2e        mpi                        np=1                               encode_in_process_excl_jvm_start   2.0494    1.5904..2.1341  [MPI_TIMING total_in_process_s reported by rank 0]
+random-5MiB          e2e-phase  mpi                        np=1                               mpi_read_s                         0.0124    0.0107..0.0174  [rank 0 / max over ranks, from MPI_TIMING]
+random-5MiB          e2e-phase  mpi                        np=1                               mpi_scatter_s                      0.0061    0.0060..0.0065  [rank 0 / max over ranks, from MPI_TIMING]
+random-5MiB          e2e-phase  mpi                        np=1                               mpi_build_max_over_ranks_s         0.0960    0.0783..0.1145  [rank 0 / max over ranks, from MPI_TIMING]
+random-5MiB          e2e-phase  mpi                        np=1                               mpi_png_write_max_over_ranks_s     0.7338    0.6548..0.7625  [rank 0 / max over ranks, from MPI_TIMING]
+random-5MiB          e2e-phase  mpi                        np=1                               mpi_ffmpeg_s                       1.1483    0.8403..1.2856  [rank 0 / max over ranks, from MPI_TIMING]
+random-5MiB          e2e        mpi                        np=4                               encode_wall_incl_jvm_start         1.6802    1.6348..1.7125  [mpirun -np 4 java ... MpiEncodeMain (fresh JVMs + MPI_Init each run)]
+random-5MiB          e2e        mpi                        np=4                               encode_in_process_excl_jvm_start   1.0945    1.0719..1.1323  [MPI_TIMING total_in_process_s reported by rank 0]
+random-5MiB          e2e-phase  mpi                        np=4                               mpi_read_s                         0.0114    0.0113..0.0220  [rank 0 / max over ranks, from MPI_TIMING]
+random-5MiB          e2e-phase  mpi                        np=4                               mpi_scatter_s                      0.0022    0.0019..0.0028  [rank 0 / max over ranks, from MPI_TIMING]
+random-5MiB          e2e-phase  mpi                        np=4                               mpi_build_max_over_ranks_s         0.1006    0.1004..0.1019  [rank 0 / max over ranks, from MPI_TIMING]
+random-5MiB          e2e-phase  mpi                        np=4                               mpi_png_write_max_over_ranks_s     0.4568    0.4565..0.5151  [rank 0 / max over ranks, from MPI_TIMING]
+random-5MiB          e2e-phase  mpi                        np=4                               mpi_ffmpeg_s                       0.5836    0.5636..0.6549  [rank 0 / max over ranks, from MPI_TIMING]
+random-5MiB          e2e        mpi                        -                                  decode                             SKIPPED   decode is not distributed over MPI (spec defines MPI for encode); mpi decode = threads decode
+random-25MiB         stage      gpu                        -                                  frame_construction                 SKIPPED   no OpenCL GPU device on this machine (no nvidia-smi / only CPU OpenCL runtime)
+random-25MiB         e2e        gpu                        -                                  encode                             SKIPPED   no OpenCL GPU device on this machine; gpu mode would fall back to threads
+random-25MiB         stage      sequential                 1                                  frame_construction                 0.0365    0.0365..0.0378
+random-25MiB         stage      sequential                 1                                  png_write                          0.6112    0.6076..0.6564  [metadata + payload frames]
+random-25MiB         stage      sequential                 1                                  png_read                           0.0445    0.0442..0.0449  [metadata + payload frames]
+random-25MiB         stage      sequential                 1                                  frame_parse_reassemble             0.0605    0.0598..0.0660  [includes writing the reassembled file]
+random-25MiB         stage      threads                    1                                  frame_construction                 0.0393    0.0385..0.0396
+random-25MiB         stage      threads                    1                                  png_write                          0.6146    0.6017..0.6325  [metadata + payload frames]
+random-25MiB         stage      threads                    1                                  png_read                           0.0450    0.0431..0.0512  [metadata + payload frames]
+random-25MiB         stage      threads                    1                                  frame_parse_reassemble             0.0429    0.0404..0.0557  [includes writing the reassembled file]
+random-25MiB         stage      threads                    2                                  frame_construction                 0.0198    0.0197..0.0199
+random-25MiB         stage      threads                    2                                  png_write                          0.3267    0.3248..0.3352  [metadata + payload frames]
+random-25MiB         stage      threads                    2                                  png_read                           0.0238    0.0237..0.0242  [metadata + payload frames]
+random-25MiB         stage      threads                    2                                  frame_parse_reassemble             0.0336    0.0305..0.0358  [includes writing the reassembled file]
+random-25MiB         stage      threads                    4                                  frame_construction                 0.0128    0.0114..0.0149
+random-25MiB         stage      threads                    4                                  png_write                          0.1755    0.1750..0.1755  [metadata + payload frames]
+random-25MiB         stage      threads                    4                                  png_read                           0.0129    0.0129..0.0131  [metadata + payload frames]
+random-25MiB         stage      threads                    4                                  frame_parse_reassemble             0.0277    0.0265..0.0307  [includes writing the reassembled file]
+random-25MiB         ffmpeg     ffmpeg                     -                                  encode                             1.0010    0.9975..1.0308  [libx264rgb crf 0 preset veryslow, frames already on disk]
+random-25MiB         ffmpeg     ffmpeg                     -                                  decode                             1.6284    1.6118..1.6316  [frame extraction to PNG only]
+random-25MiB         e2e        sequential                 1                                  encode                             1.8388    1.6474..1.9055  [file -> frames -> PNG -> ffmpeg -> mp4]
+random-25MiB         e2e        sequential                 1                                  decode                             2.1718    2.1531..2.2189  [mp4 -> ffmpeg -> PNG read -> parse -> file]
+random-25MiB         e2e        threads                    1                                  encode                             1.7907    1.6466..1.8559  [file -> frames -> PNG -> ffmpeg -> mp4]
+random-25MiB         e2e        threads                    1                                  decode                             2.2363    2.1849..2.2370  [mp4 -> ffmpeg -> PNG read -> parse -> file]
+random-25MiB         e2e        threads                    2                                  encode                             1.6915    1.3887..1.7544  [file -> frames -> PNG -> ffmpeg -> mp4]
+random-25MiB         e2e        threads                    2                                  decode                             1.9301    1.9297..1.9578  [mp4 -> ffmpeg -> PNG read -> parse -> file]
+random-25MiB         e2e        threads                    4                                  encode                             1.3575    1.1848..1.4401  [file -> frames -> PNG -> ffmpeg -> mp4]
+random-25MiB         e2e        threads                    4                                  decode                             1.7529    1.7493..1.7746  [mp4 -> ffmpeg -> PNG read -> parse -> file]
+random-25MiB         e2e        mpi                        np=1                               encode_wall_incl_jvm_start         5.4569    5.0695..5.5651  [mpirun -np 1 java ... MpiEncodeMain (fresh JVMs + MPI_Init each run)]
+random-25MiB         e2e        mpi                        np=1                               encode_in_process_excl_jvm_start   4.9557    4.5667..5.0555  [MPI_TIMING total_in_process_s reported by rank 0]
+random-25MiB         e2e-phase  mpi                        np=1                               mpi_read_s                         0.0267    0.0253..0.0275  [rank 0 / max over ranks, from MPI_TIMING]
+random-25MiB         e2e-phase  mpi                        np=1                               mpi_scatter_s                      0.0281    0.0280..0.0311  [rank 0 / max over ranks, from MPI_TIMING]
+random-25MiB         e2e-phase  mpi                        np=1                               mpi_build_max_over_ranks_s         0.1433    0.1369..0.1434  [rank 0 / max over ranks, from MPI_TIMING]
+random-25MiB         e2e-phase  mpi                        np=1                               mpi_png_write_max_over_ranks_s     1.2125    1.1757..1.2356  [rank 0 / max over ranks, from MPI_TIMING]
+random-25MiB         e2e-phase  mpi                        np=1                               mpi_ffmpeg_s                       3.5187    3.1983..3.6461  [rank 0 / max over ranks, from MPI_TIMING]
+random-25MiB         e2e        mpi                        np=4                               encode_wall_incl_jvm_start         3.0024    2.8557..3.1091  [mpirun -np 4 java ... MpiEncodeMain (fresh JVMs + MPI_Init each run)]
+random-25MiB         e2e        mpi                        np=4                               encode_in_process_excl_jvm_start   2.3729    2.2727..2.4998  [MPI_TIMING total_in_process_s reported by rank 0]
+random-25MiB         e2e-phase  mpi                        np=4                               mpi_read_s                         0.0262    0.0257..0.0324  [rank 0 / max over ranks, from MPI_TIMING]
+random-25MiB         e2e-phase  mpi                        np=4                               mpi_scatter_s                      0.0117    0.0110..0.0244  [rank 0 / max over ranks, from MPI_TIMING]
+random-25MiB         e2e-phase  mpi                        np=4                               mpi_build_max_over_ranks_s         0.1241    0.1092..0.1260  [rank 0 / max over ranks, from MPI_TIMING]
+random-25MiB         e2e-phase  mpi                        np=4                               mpi_png_write_max_over_ranks_s     0.6834    0.6710..0.7074  [rank 0 / max over ranks, from MPI_TIMING]
+random-25MiB         e2e-phase  mpi                        np=4                               mpi_ffmpeg_s                       1.5302    1.4607..1.6659  [rank 0 / max over ranks, from MPI_TIMING]
+random-25MiB         e2e        mpi                        -                                  decode                             SKIPPED   decode is not distributed over MPI (spec defines MPI for encode); mpi decode = threads decode
+compressible-25MiB   stage      gpu                        -                                  frame_construction                 SKIPPED   no OpenCL GPU device on this machine (no nvidia-smi / only CPU OpenCL runtime)
+compressible-25MiB   e2e        gpu                        -                                  encode                             SKIPPED   no OpenCL GPU device on this machine; gpu mode would fall back to threads
+compressible-25MiB   stage      sequential                 1                                  frame_construction                 0.0425    0.0420..0.0518
+compressible-25MiB   stage      sequential                 1                                  png_write                          0.4318    0.4212..0.4780  [metadata + payload frames]
+compressible-25MiB   stage      sequential                 1                                  png_read                           0.1198    0.1175..0.1218  [metadata + payload frames]
+compressible-25MiB   stage      sequential                 1                                  frame_parse_reassemble             0.0653    0.0600..0.0675  [includes writing the reassembled file]
+compressible-25MiB   stage      threads                    1                                  frame_construction                 0.0398    0.0391..0.0401
+compressible-25MiB   stage      threads                    1                                  png_write                          0.4297    0.4238..0.5032  [metadata + payload frames]
+compressible-25MiB   stage      threads                    1                                  png_read                           0.1239    0.1223..0.1401  [metadata + payload frames]
+compressible-25MiB   stage      threads                    1                                  frame_parse_reassemble             0.0529    0.0514..0.0549  [includes writing the reassembled file]
+compressible-25MiB   stage      threads                    2                                  frame_construction                 0.0232    0.0203..0.0285
+compressible-25MiB   stage      threads                    2                                  png_write                          0.2227    0.2226..0.2776  [metadata + payload frames]
+compressible-25MiB   stage      threads                    2                                  png_read                           0.0640    0.0635..0.0640  [metadata + payload frames]
+compressible-25MiB   stage      threads                    2                                  frame_parse_reassemble             0.0399    0.0384..0.0402  [includes writing the reassembled file]
+compressible-25MiB   stage      threads                    4                                  frame_construction                 0.0123    0.0113..0.0124
+compressible-25MiB   stage      threads                    4                                  png_write                          0.1227    0.1198..0.1254  [metadata + payload frames]
+compressible-25MiB   stage      threads                    4                                  png_read                           0.0354    0.0352..0.0357  [metadata + payload frames]
+compressible-25MiB   stage      threads                    4                                  frame_parse_reassemble             0.0359    0.0341..0.0367  [includes writing the reassembled file]
+compressible-25MiB   ffmpeg     ffmpeg                     -                                  encode                             3.2737    3.0909..3.6893  [libx264rgb crf 0 preset veryslow, frames already on disk]
+compressible-25MiB   ffmpeg     ffmpeg                     -                                  decode                             2.6460    2.6186..2.7274  [frame extraction to PNG only]
+compressible-25MiB   e2e        sequential                 1                                  encode                             3.6043    3.5849..4.0160  [file -> frames -> PNG -> ffmpeg -> mp4]
+compressible-25MiB   e2e        sequential                 1                                  decode                             2.9721    2.9540..3.0297  [mp4 -> ffmpeg -> PNG read -> parse -> file]
+compressible-25MiB   e2e        threads                    1                                  encode                             3.7327    3.6860..3.7949  [file -> frames -> PNG -> ffmpeg -> mp4]
+compressible-25MiB   e2e        threads                    1                                  decode                             3.0434    2.9028..3.0608  [mp4 -> ffmpeg -> PNG read -> parse -> file]
+compressible-25MiB   e2e        threads                    2                                  encode                             3.4612    3.3637..3.5075  [file -> frames -> PNG -> ffmpeg -> mp4]
+compressible-25MiB   e2e        threads                    2                                  decode                             2.8534    2.8007..2.8853  [mp4 -> ffmpeg -> PNG read -> parse -> file]
+compressible-25MiB   e2e        threads                    4                                  encode                             3.5633    3.2713..3.5959  [file -> frames -> PNG -> ffmpeg -> mp4]
+compressible-25MiB   e2e        threads                    4                                  decode                             2.7864    2.7694..2.8216  [mp4 -> ffmpeg -> PNG read -> parse -> file]
+compressible-25MiB   e2e        mpi                        np=1                               encode_wall_incl_jvm_start         12.9136   12.8744..13.1579  [mpirun -np 1 java ... MpiEncodeMain (fresh JVMs + MPI_Init each run)]
+compressible-25MiB   e2e        mpi                        np=1                               encode_in_process_excl_jvm_start   12.4105   12.3754..12.6333  [MPI_TIMING total_in_process_s reported by rank 0]
+compressible-25MiB   e2e-phase  mpi                        np=1                               mpi_read_s                         0.0240    0.0233..0.0289  [rank 0 / max over ranks, from MPI_TIMING]
+compressible-25MiB   e2e-phase  mpi                        np=1                               mpi_scatter_s                      0.0286    0.0282..0.0298  [rank 0 / max over ranks, from MPI_TIMING]
+compressible-25MiB   e2e-phase  mpi                        np=1                               mpi_build_max_over_ranks_s         0.1395    0.1379..0.1399  [rank 0 / max over ranks, from MPI_TIMING]
+compressible-25MiB   e2e-phase  mpi                        np=1                               mpi_png_write_max_over_ranks_s     1.0092    0.9779..1.0442  [rank 0 / max over ranks, from MPI_TIMING]
+compressible-25MiB   e2e-phase  mpi                        np=1                               mpi_ffmpeg_s                       11.2057   11.2045..11.3972  [rank 0 / max over ranks, from MPI_TIMING]
+compressible-25MiB   e2e        mpi                        np=4                               encode_wall_incl_jvm_start         6.2243    6.2170..6.4531  [mpirun -np 4 java ... MpiEncodeMain (fresh JVMs + MPI_Init each run)]
+compressible-25MiB   e2e        mpi                        np=4                               encode_in_process_excl_jvm_start   5.6428    5.6366..5.8728  [MPI_TIMING total_in_process_s reported by rank 0]
+compressible-25MiB   e2e-phase  mpi                        np=4                               mpi_read_s                         0.0238    0.0233..0.0238  [rank 0 / max over ranks, from MPI_TIMING]
+compressible-25MiB   e2e-phase  mpi                        np=4                               mpi_scatter_s                      0.0105    0.0102..0.0115  [rank 0 / max over ranks, from MPI_TIMING]
+compressible-25MiB   e2e-phase  mpi                        np=4                               mpi_build_max_over_ranks_s         0.1113    0.1086..0.1176  [rank 0 / max over ranks, from MPI_TIMING]
+compressible-25MiB   e2e-phase  mpi                        np=4                               mpi_png_write_max_over_ranks_s     0.6728    0.6160..0.6940  [rank 0 / max over ranks, from MPI_TIMING]
+compressible-25MiB   e2e-phase  mpi                        np=4                               mpi_ffmpeg_s                       4.8914    4.8509..5.0542  [rank 0 / max over ranks, from MPI_TIMING]
+compressible-25MiB   e2e        mpi                        -                                  decode                             SKIPPED   decode is not distributed over MPI (spec defines MPI for encode); mpi decode = threads decode
