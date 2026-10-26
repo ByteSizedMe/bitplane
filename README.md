@@ -59,6 +59,24 @@ For a 5 MiB file:
 | CI | GitHub Actions |
 | Execution tracking | `io.github.sathwikhbhat:api-execution-tracker` |
 
+## Parallel Modes (optional)
+
+The default is the original sequential path. Select another with `bitplane.parallel.mode`
+(`sequential` | `threads` | `gpu` | `mpi`), e.g. `--bitplane.parallel.mode=threads`.
+
+| Property | Default | Meaning |
+| --- | --- | --- |
+| `bitplane.parallel.mode` | `sequential` | which path `CodecService` uses |
+| `bitplane.parallel.threads` | `0` | worker threads; `0` = `Runtime.availableProcessors()` |
+| `bitplane.parallel.gpu.batch-frames` | `8` | frames built per OpenCL kernel launch |
+| `bitplane.parallel.mpi.*` | see `application.yml` | `mpirun` command, process count, classpath |
+
+* **threads** - frames are built, PNG-written, PNG-read and parsed on a thread pool; output is identical to sequential.
+* **gpu** - an OpenCL kernel (JOCL) builds the 1920x1080 pixels, one work-item per pixel, several frames per launch.
+  PNG encoding stays on the CPU. If no OpenCL **GPU** is found it logs a warning and runs `threads`.
+* **mpi** - `mpirun` runs `MpiEncodeMain`; see [`mpi/README.md`](mpi/README.md).
+* Benchmarks: [`bench/README.md`](bench/README.md).
+
 ## Workspace & Cleanup
 
 Each request gets an isolated UUID job directory under `data/temp/`. Cleanup is two-layered:
