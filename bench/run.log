@@ -1,0 +1,193 @@
+Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStoreType=JKS -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=37367 -Dhttp.nonProxyHosts=localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local -Djdk.http.auth.tunneling.disabledSchemes= -Djdk.http.auth.proxying.disabledSchemes=
+Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStoreType=JKS -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=37367 -Dhttp.nonProxyHosts=localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local -Djdk.http.auth.tunneling.disabledSchemes= -Djdk.http.auth.proxying.disabledSchemes=
+Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStoreType=JKS -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=37367 -Dhttp.nonProxyHosts=localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local -Djdk.http.auth.tunneling.disabledSchemes= -Djdk.http.auth.proxying.disabledSchemes=
+Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStoreType=JKS -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=37367 -Dhttp.nonProxyHosts=localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local -Djdk.http.auth.tunneling.disabledSchemes= -Djdk.http.auth.proxying.disabledSchemes=
+Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.ssl.trustStoreType=JKS -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=37367 -Dhttp.nonProxyHosts=localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local -Djdk.http.auth.tunneling.disabledSchemes= -Djdk.http.auth.proxying.disabledSchemes=
+CPU model        : Intel(R) Xeon(R) Processor @ 2.30GHz
+Logical CPUs     : 4 (Runtime.availableProcessors)
+lscpu topology   : Thread(s) per core: 1;Core(s) per socket: 4;Socket(s): 1;Hypervisor vendor: KVM;Virtualization type: full
+RAM              : 16477348 kB
+GPU (nvidia-smi) : not available (nvidia-smi not found)
+OpenCL devices   : Device Name cpu-skylake-avx512-Intel(R) Xeon(R) Processor @ 2.30GHz; Driver Version 5.0+debian; Device Type CPU; Device Name cpu-skylake-avx512-Intel(R) Xeon(R) Processor @ 2.30GHz; Device Name cpu-skylake-avx512-Intel(R) Xeon(R) Processor @ 2.30GHz; Device Name cpu-skylake-avx512-Intel(R) Xeon(R) Processor @ 2.30GHz
+OS               : Ubuntu 24.04.5 LTS / kernel 6.18.44-fc-v153
+Java             : 21.0.12.1 (OpenJDK 64-Bit Server VM, Ubuntu)
+FFmpeg           : ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+MPI              : mpirun (Open MPI) 4.1.6 ; Java bindings built from Open MPI source of the same version
+JVM max heap     : 10240 MiB
+=== input random-1MiB ===
+10:17:45.951 [main] INFO com.sathwikhbhat.bitplane.parallel.gpu.OpenClRasterizer -- No OpenCL GPU device found
+  stages: sequential 1
+    frame_construction       sequential 1          median 0.0017 s
+    png_write                sequential 1          median 0.0363 s
+    png_read                 sequential 1          median 0.0055 s
+    frame_parse_reassemble   sequential 1          median 0.0061 s
+  stages: threads 1
+    frame_construction       threads  1          median 0.0022 s
+    png_write                threads  1          median 0.0370 s
+    png_read                 threads  1          median 0.0055 s
+    frame_parse_reassemble   threads  1          median 0.0040 s
+  stages: threads 2
+    frame_construction       threads  2          median 0.0022 s
+    png_write                threads  2          median 0.0316 s
+    png_read                 threads  2          median 0.0040 s
+    frame_parse_reassemble   threads  2          median 0.0057 s
+  stages: threads 4
+    frame_construction       threads  4          median 0.0023 s
+    png_write                threads  4          median 0.0288 s
+    png_read                 threads  4          median 0.0041 s
+    frame_parse_reassemble   threads  4          median 0.0045 s
+    encode                   ffmpeg   -          median 0.1973 s
+    decode                   ffmpeg   -          median 0.3001 s
+  e2e: sequential 1
+10:17:55.745 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=sequential, running=sequential
+    encode                   sequential 1          median 0.2258 s
+    decode                   sequential 1          median 0.3261 s
+  e2e: threads 1
+10:18:01.614 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=threads, running=threads (1 threads)
+    encode                   threads  1          median 0.1937 s
+    decode                   threads  1          median 0.3528 s
+  e2e: threads 2
+10:18:07.693 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=threads, running=threads (2 threads)
+    encode                   threads  2          median 0.2832 s
+    decode                   threads  2          median 0.3212 s
+  e2e: threads 4
+10:18:13.479 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=threads, running=threads (4 threads)
+    encode                   threads  4          median 0.2644 s
+    decode                   threads  4          median 0.3364 s
+  e2e: mpi np=1
+    encode_wall_incl_jvm_start mpi      np=1       median 1.3684 s
+  e2e: mpi np=4
+    encode_wall_incl_jvm_start mpi      np=4       median 1.4467 s
+=== input random-5MiB ===
+10:18:41.641 [main] INFO com.sathwikhbhat.bitplane.parallel.gpu.OpenClRasterizer -- No OpenCL GPU device found
+  stages: sequential 1
+    frame_construction       sequential 1          median 0.0076 s
+    png_write                sequential 1          median 0.1240 s
+    png_read                 sequential 1          median 0.0111 s
+    frame_parse_reassemble   sequential 1          median 0.0117 s
+  stages: threads 1
+    frame_construction       threads  1          median 0.0086 s
+    png_write                threads  1          median 0.1297 s
+    png_read                 threads  1          median 0.0115 s
+    frame_parse_reassemble   threads  1          median 0.0099 s
+  stages: threads 2
+    frame_construction       threads  2          median 0.0050 s
+    png_write                threads  2          median 0.0766 s
+    png_read                 threads  2          median 0.0072 s
+    frame_parse_reassemble   threads  2          median 0.0087 s
+  stages: threads 4
+    frame_construction       threads  4          median 0.0038 s
+    png_write                threads  4          median 0.0493 s
+    png_read                 threads  4          median 0.0045 s
+    frame_parse_reassemble   threads  4          median 0.0081 s
+    encode                   ffmpeg   -          median 0.3539 s
+    decode                   ffmpeg   -          median 0.5115 s
+  e2e: sequential 1
+10:18:57.445 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=sequential, running=sequential
+    encode                   sequential 1          median 0.7400 s
+    decode                   sequential 1          median 0.6714 s
+  e2e: threads 1
+10:19:10.269 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=threads, running=threads (1 threads)
+    encode                   threads  1          median 0.7008 s
+    decode                   threads  1          median 0.6866 s
+  e2e: threads 2
+10:19:23.220 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=threads, running=threads (2 threads)
+    encode                   threads  2          median 0.4545 s
+    decode                   threads  2          median 0.6103 s
+  e2e: threads 4
+10:19:34.539 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=threads, running=threads (4 threads)
+    encode                   threads  4          median 0.4249 s
+    decode                   threads  4          median 0.5810 s
+  e2e: mpi np=1
+    encode_wall_incl_jvm_start mpi      np=1       median 2.5734 s
+  e2e: mpi np=4
+    encode_wall_incl_jvm_start mpi      np=4       median 1.6802 s
+=== input random-25MiB ===
+10:20:20.527 [main] INFO com.sathwikhbhat.bitplane.parallel.gpu.OpenClRasterizer -- No OpenCL GPU device found
+  stages: sequential 1
+    frame_construction       sequential 1          median 0.0365 s
+    png_write                sequential 1          median 0.6112 s
+    png_read                 sequential 1          median 0.0445 s
+    frame_parse_reassemble   sequential 1          median 0.0605 s
+  stages: threads 1
+    frame_construction       threads  1          median 0.0393 s
+    png_write                threads  1          median 0.6146 s
+    png_read                 threads  1          median 0.0450 s
+    frame_parse_reassemble   threads  1          median 0.0429 s
+  stages: threads 2
+    frame_construction       threads  2          median 0.0198 s
+    png_write                threads  2          median 0.3267 s
+    png_read                 threads  2          median 0.0238 s
+    frame_parse_reassemble   threads  2          median 0.0336 s
+  stages: threads 4
+    frame_construction       threads  4          median 0.0128 s
+    png_write                threads  4          median 0.1755 s
+    png_read                 threads  4          median 0.0129 s
+    frame_parse_reassemble   threads  4          median 0.0277 s
+    encode                   ffmpeg   -          median 1.0010 s
+    decode                   ffmpeg   -          median 1.6284 s
+  e2e: sequential 1
+10:21:12.111 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=sequential, running=sequential
+    encode                   sequential 1          median 1.8388 s
+    decode                   sequential 1          median 2.1718 s
+  e2e: threads 1
+10:21:51.217 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=threads, running=threads (1 threads)
+    encode                   threads  1          median 1.7907 s
+    decode                   threads  1          median 2.2363 s
+  e2e: threads 2
+10:22:30.368 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=threads, running=threads (2 threads)
+    encode                   threads  2          median 1.6915 s
+    decode                   threads  2          median 1.9301 s
+  e2e: threads 4
+10:23:06.452 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=threads, running=threads (4 threads)
+    encode                   threads  4          median 1.3575 s
+    decode                   threads  4          median 1.7529 s
+  e2e: mpi np=1
+    encode_wall_incl_jvm_start mpi      np=1       median 5.4569 s
+  e2e: mpi np=4
+    encode_wall_incl_jvm_start mpi      np=4       median 3.0024 s
+=== input compressible-25MiB ===
+10:24:59.932 [main] INFO com.sathwikhbhat.bitplane.parallel.gpu.OpenClRasterizer -- No OpenCL GPU device found
+  stages: sequential 1
+    frame_construction       sequential 1          median 0.0425 s
+    png_write                sequential 1          median 0.4318 s
+    png_read                 sequential 1          median 0.1198 s
+    frame_parse_reassemble   sequential 1          median 0.0653 s
+  stages: threads 1
+    frame_construction       threads  1          median 0.0398 s
+    png_write                threads  1          median 0.4297 s
+    png_read                 threads  1          median 0.1239 s
+    frame_parse_reassemble   threads  1          median 0.0529 s
+  stages: threads 2
+    frame_construction       threads  2          median 0.0232 s
+    png_write                threads  2          median 0.2227 s
+    png_read                 threads  2          median 0.0640 s
+    frame_parse_reassemble   threads  2          median 0.0399 s
+  stages: threads 4
+    frame_construction       threads  4          median 0.0123 s
+    png_write                threads  4          median 0.1227 s
+    png_read                 threads  4          median 0.0354 s
+    frame_parse_reassemble   threads  4          median 0.0359 s
+    encode                   ffmpeg   -          median 3.2737 s
+    decode                   ffmpeg   -          median 2.6460 s
+  e2e: sequential 1
+10:26:14.029 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=sequential, running=sequential
+    encode                   sequential 1          median 3.6043 s
+    decode                   sequential 1          median 2.9721 s
+  e2e: threads 1
+10:27:13.770 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=threads, running=threads (1 threads)
+    encode                   threads  1          median 3.7327 s
+    decode                   threads  1          median 3.0434 s
+  e2e: threads 2
+10:28:13.604 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=threads, running=threads (2 threads)
+    encode                   threads  2          median 3.4612 s
+    decode                   threads  2          median 2.8534 s
+  e2e: threads 4
+10:29:11.206 [main] INFO com.sathwikhbhat.bitplane.service.CodecService -- Parallel mode: requested=threads, running=threads (4 threads)
+    encode                   threads  4          median 3.5633 s
+    decode                   threads  4          median 2.7864 s
+  e2e: mpi np=1
+    encode_wall_incl_jvm_start mpi      np=1       median 12.9136 s
+  e2e: mpi np=4
+    encode_wall_incl_jvm_start mpi      np=4       median 6.2243 s
+DONE

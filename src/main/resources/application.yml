@@ -11,3 +11,21 @@ spring:
   mvc:
     async:
       request-timeout: -1
+
+bitplane:
+  parallel:
+    # sequential (default) | threads | gpu | mpi
+    mode: sequential
+    # worker threads for threads mode (and PNG IO in gpu/mpi); 0 = Runtime.availableProcessors()
+    threads: 0
+    gpu:
+      batch-frames: 8
+      # accept an OpenCL CPU device when no GPU exists (testing only; normally gpu mode falls back to threads)
+      allow-cpu-device: false
+    mpi:
+      processes: 2
+      command: mpirun
+      extra-args: ""
+      # classpath holding bitplane classes, dependencies and mpi.jar (see mpi/README.md); required for mpi mode
+      classpath: ""
+      library-path: ""

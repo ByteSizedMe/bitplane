@@ -16,6 +16,16 @@ public class VideoEncoder {
 
     private final FFmpegExecutor ffmpegExecutor = new FFmpegExecutor();
     private final ImageIOCodec imageIOCodec = new ImageIOCodec();
+    private final ParallelFrameIO parallelFrameIO;
+
+    public VideoEncoder() {
+        this(null);
+    }
+
+    /** @param parallelFrameIO writes PNG frames concurrently when non-null; sequential loop otherwise */
+    public VideoEncoder(ParallelFrameIO parallelFrameIO) {
+        this.parallelFrameIO = parallelFrameIO;
+    }
 
     public Path encode(ImageFrameSet imageFrameSet, Path jobDirectory) throws IOException {
         BufferedImage metadataFrameImage = imageFrameSet.metadataImage();
@@ -30,10 +40,21 @@ public class VideoEncoder {
         imageIOCodec.write(metadataFrameImage, frameDirectory.resolve(FrameFileName.atIndex(0)));
 
         // Frame 1+ = Payload Frames
-        for (int i = 0; i < payloadFrameImages.size(); i++) {
-            imageIOCodec.write(payloadFrameImages.get(i), frameDirectory.resolve(FrameFileName.atIndex(i + 1)));
+        if (parallelFrameIO != null) {
+            parallelFrameIO.writeAll(payloadFrameImages, frameDirectory, 1);
+        } else {
+            for (int i = 0; i < payloadFrameImages.size(); i++) {
+                imageIOCodec.write(payloadFrameImages.get(i), frameDirectory.resolve(FrameFileName.atIndex(i + 1)));
+            }
         }
 
+        encodeFrameDirectory(frameDirectory, outputVideo);
+
+        return outputVideo;
+    }
+
+    /** Runs only the FFmpeg step over {@code frame_%06d.png} files that already exist in {@code frameDirectory}. */
+    public void encodeFrameDirectory(Path frameDirectory, Path outputVideo) throws IOException {
         ProcessBuilder processBuilder = new ProcessBuilder(
                 "ffmpeg",
                 "-y",
@@ -57,7 +78,5 @@ public class VideoEncoder {
         ffmpegExecutor.execute(processBuilder);
 
         log.debug("Encoded video: {}", outputVideo.toAbsolutePath());
-
-        return outputVideo;
     }
 }

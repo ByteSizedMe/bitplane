@@ -17,8 +17,25 @@ public class VideoDecoder {
 
     private final FFmpegExecutor ffmpegExecutor = new FFmpegExecutor();
     private final ImageIOCodec imageIOCodec = new ImageIOCodec();
+    private final ParallelFrameIO parallelFrameIO;
+
+    public VideoDecoder() {
+        this(null);
+    }
+
+    /** @param parallelFrameIO reads PNG frames concurrently when non-null; sequential loop otherwise */
+    public VideoDecoder(ParallelFrameIO parallelFrameIO) {
+        this.parallelFrameIO = parallelFrameIO;
+    }
 
     public ImageFrameSet decode(Path videoPath, Path jobDirectory) throws IOException {
+        List<Path> framePaths = extractFrames(videoPath, jobDirectory);
+
+        return readFrames(framePaths);
+    }
+
+    /** Runs only the FFmpeg step and returns the extracted PNG paths in frame order. */
+    public List<Path> extractFrames(Path videoPath, Path jobDirectory) throws IOException {
         if (!Files.exists(videoPath)) {
             throw new IOException("Video file does not exist: " + videoPath);
         }
@@ -57,6 +74,16 @@ public class VideoDecoder {
         }
 
         log.debug("Extracted {} image frame(s)", framePaths.size());
+
+        return framePaths;
+    }
+
+    /** Reads extracted frames: first is the metadata frame, the rest are payload frames. */
+    public ImageFrameSet readFrames(List<Path> framePaths) throws IOException {
+        if (parallelFrameIO != null) {
+            List<BufferedImage> images = parallelFrameIO.readAll(framePaths);
+            return new ImageFrameSet(images.getFirst(), new ArrayList<>(images.subList(1, images.size())));
+        }
 
         BufferedImage metadataImage = imageIOCodec.read(framePaths.getFirst());
 

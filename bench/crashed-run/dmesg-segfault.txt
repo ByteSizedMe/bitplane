@@ -1,0 +1,1 @@
+[ 1594.443766] pool-351-thread[5753]: segfault at 7f68588ba000 ip 00007f6840380d61 sp 00007f681c0fe170 error 4 likely on CPU 2 (core 2, socket 0)
